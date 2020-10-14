@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Application météo</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" integrity="sha384-OLYO0LymqQ+uHXELyx93kblK5YIS3B2ZfLGBmsJaUyor7CpMTBsahDHByqSuWW+q" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Leaflet Map css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <!-- Bootstrap's scripts: JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+
+    <!-- Leaflet Map js -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin="" defer></script>
+
+    <script src="map.js" defer></script>
+    <script src="geocode.js" defer></script>
+    <script src="Weather.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="autocomplete.js" defer></script>
+</head>
+<body>
+    <div class="container mt-3">
+        <div id="menu" class="row justify-content-center">
+            <div class="input-group col-12 col-md-6 col-lg-5 autocomplete">
+                <input id="city-name" class="form-control mb-0 pb-1"
+                       type="text" placeholder="Rechercher" aria-label="search" />
+                <div class="input-group-append">
+                    <span class="input-group-text" onclick="displayWeather()">
+                        <i class="fas fa-search text-grey"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="data" class="row justify-content-center">
+            <div class="card weather-card m-3 col-sm-12 col-md-6 col-lg-5">
+                <div class="card-body pb-3">
+                    <h4 id="city" class="card-title font-weight-bold">_</h4>
+                    <p id="date" class="card-subtitle text-muted"></p>
+                    <p id="condition" class="card-text"></p>
+
+                    <div class="d-flex justify-content-between">
+                        <p id="temperature" class="display-1 degree">_</p>
+                        <img id="weather-image" src="" alt="">
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <p id="humidity"><i class="fas fa-tint fa-lg text-info pr-2"></i>_</p>
+                        <p id="wind"><i class="fas fa-wind fa-lg grey-text pr-2"></i>_</p>
+                    </div>
+
+                    <div class="progress">
+                        <div id="progressbar" class="progress-bar black" style="width: 0%"></div>
+                    </div>
+                    <ul class="list-unstyled d-flex justify-content-between text-muted mb-4">
+                        <li class="pl-4">2h</li>
+                        <li>07h</li>
+                        <li>12h</li>
+                        <li>17h</li>
+                        <li class="pr-4">22h</li>
+                    </ul>
+
+                    <div class="collapse-content">
+                        <div class="collapse" id="collapseExample">
+                            <table class="table table-borderless table-sm mb-0">
+                                <tbody id="next-days-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 deep-purple-text collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Prochains jours</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-3 p-0 col-sm-12 col-md-6 col-lg-5 bg-danger map-card">
+                <div id="map"></div>
+                <button id="weather-here"
+                        class="btn btn-light btn-outline-dark center hide"
+                        onclick="onClickWeatherHere()">
+                    Rechercher ici
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
