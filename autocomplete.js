@@ -57,7 +57,7 @@ input_city.addEventListener('input', function() {
                 cpt++;
             }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => alert(error));
 });
 
 input_city.addEventListener('keydown', function(e) {
