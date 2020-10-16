@@ -1,19 +1,16 @@
 let weather;
 
 (function () {
+    // Init map with default coords
+    initMap();
+
+    // Check for geolocation
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
             let coords = { lat: position.coords.latitude, lng: position.coords.longitude }
             queryWeather(coords);
             initMap(coords, 11);
-        }, () => {
-            // Init map to default coords
-            initMap();
         });
-    }
-    else {
-        // Init map to default coords
-        initMap();
     }
 })();
 
@@ -89,7 +86,6 @@ function displayWeather() {
 
         const td_temp = document.createElement('td');
         td_temp.className = 'float-right font-weight-normal';
-        let temp =
         td_temp.insertAdjacentHTML('beforeend',
             `<p class="mb-1">${child.maxTemperature}&deg;
                     <span class="text-muted">/${child.minTemperature}&deg;
